@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story | Casa Kape</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#FFF8F2;
+color:#2F1B14;
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:25px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,248,242,.95);
+backdrop-filter:blur(12px);
+z-index:999;
+}
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:44px;
+font-weight:700;
+color:#5C3A21;
+}
+
+.logo a{text-decoration:none;color:#5C3A21}
+
+.menu{display:flex;gap:35px;align-items:center}
+
+.menu a{
+text-decoration:none;
+color:#2F1B14;
+font-weight:600;
+transition:.3s;
+}
+
+.menu a:hover{color:#A97142}
+
+.dropdown{position:relative}
+
+.dropdown-content{
+position:absolute;
+top:40px;
+right:-250px;
+width:750px;
+background:white;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+padding:35px;
+border-top:4px solid #A97142;
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+opacity:0;
+visibility:hidden;
+transition:.3s;
+}
+
+.dropdown:hover .dropdown-content{
+opacity:1;
+visibility:visible;
+}
+
+.dropdown-content h4 a{
+font-family:'Cormorant Garamond',serif;
+font-size:28px;
+margin-bottom:15px;
+color:#5C3A21;
+display:inline-block;
+}
+
+.dropdown-content p{
+font-size:14px;
+margin-bottom:10px;
+}
+
+.label{
+font-size:13px;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#E5C7A8;
+margin-bottom:18px;
+}
+
+.story-hero{
+height:100vh;
+background:
+linear-gradient(rgba(47,27,20,.45),rgba(47,27,20,.68)),
+url('alfresco.png');
+background-size:cover;
+background-position:center center;
+background-repeat:no-repeat;
+display:flex;
+align-items:center;
+padding:0 8%;
+color:white;
+}
+
+.story-hero-content{
+max-width:800px;
+}
+
+.story-hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:95px;
+line-height:.9;
+margin-bottom:25px;
+text-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+.story-hero p{
+font-size:20px;
+line-height:1.8;
+max-width:680px;
+text-shadow:0 3px 15px rgba(0,0,0,.25);
+}
+
+.section{
+padding:120px 8%;
+}
+
+.two-col{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+}
+
+.section-title{
+font-family:'Cormorant Garamond',serif;
+font-size:62px;
+color:#5C3A21;
+margin-bottom:24px;
+}
+
+.section p{
+font-size:18px;
+line-height:1.9;
+margin-bottom:18px;
+}
+
+.image-box{
+height:520px;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 18px 45px rgba(0,0,0,.12);
+}
+
+.image-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.5s;
+}
+
+.image-box:hover img{
+transform:scale(1.05);
+}
+
+.dark-section{
+background:#2F1B14;
+color:white;
+}
+
+.dark-section .section-title{
+color:white;
+}
+
+.eco{
+background:#EFE4D5;
+text-align:center;
+}
+
+.eco .label{
+color:#7A4A28;
+}
+
+.eco .section-title{
+max-width:850px;
+margin:0 auto 24px;
+}
+
+.eco p{
+max-width:850px;
+margin:0 auto 18px;
+}
+
+.commitments{
+margin-top:45px;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:20px;
+}
+
+.commitment{
+background:white;
+padding:28px 20px;
+border-top:5px solid #A97142;
+box-shadow:0 8px 25px rgba(0,0,0,.06);
+transition:.3s;
+}
+
+.commitment:hover{
+transform:translateY(-8px);
+}
+
+.commitment h3{
+font-family:'Cormorant Garamond',serif;
+font-size:25px;
+color:#5C3A21;
+}
+
+.quote-section{
+padding:130px 12%;
+text-align:center;
+background:#FFF8F2;
+}
+
+.quote-section .label{
+color:#A97142;
+}
+
+.quote-section h2{
+font-family:'Cormorant Garamond',serif;
+font-size:72px;
+color:#5C3A21;
+margin-bottom:25px;
+}
+
+.quote-section p{
+font-size:20px;
+line-height:1.9;
+max-width:900px;
+margin:auto;
+}
+
+footer{
+background:#2F1B14;
+color:white;
+padding:50px;
+text-align:center;
+}
+
+footer p{opacity:.8}
+
+@media(max-width:900px){
+nav{
+position:relative;
+flex-direction:column;
+gap:18px;
+}
+
+.menu{
+flex-wrap:wrap;
+justify-content:center;
+gap:18px;
+}
+
+.dropdown-content{
+display:none;
+}
+
+.story-hero{
+height:auto;
+padding:90px 8%;
+}
+
+.story-hero h1{
+font-size:62px;
+}
+
+.two-col{
+grid-template-columns:1fr;
+}
+
+.commitments{
+grid-template-columns:1fr;
+}
+
+.image-box{
+height:380px;
+}
+
+.section-title{
+font-size:45px;
+}
+
+.quote-section h2{
+font-size:48px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo"><a href="index.html">CASA KAPE</a></div>
+
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="our-story.html">Our Story</a>
+
+<div class="dropdown">
+<a href="menu.html">Menu ▾</a>
+
+<div class="dropdown-content">
+<div>
+<h4><a href="menu.html#kape">Kape</a></h4>
+<p>Kapeng Barako</p>
+<p>Spanish Latte</p>
+<p>Ube Latte</p>
+<p>Sikwate</p>
+</div>
+
+<div>
+<h4><a href="menu.html#silog">Silog</a></h4>
+<p>Tapsilog</p>
+<p>Longsilog</p>
+<p>Tocilog</p>
+<p>Bangsilog</p>
+</div>
+
+<div>
+<h4><a href="menu.html#kakanin">Kakanin</a></h4>
+<p>Bibingka</p>
+<p>Kutsinta</p>
+<p>Sapin-Sapin</p>
+<p>Pichi-Pichi</p>
+</div>
+
+<div>
+<h4><a href="menu.html#desserts">Desserts</a></h4>
+<p>Halo-Halo</p>
+<p>Leche Flan</p>
+<p>Mango Float</p>
+<p>Ube Cheesecake</p>
+</div>
+</div>
+</div>
+
+<a href="gallery.html">Gallery</a>
+<a href="visit.html">Visit</a>
+</div>
+</nav>
+
+<section class="story-hero">
+<div class="story-hero-content">
+
+<p class="label">OUR STORY</p>
+
+<h1>
+Where Coffee,<br>
+Comfort, and<br>
+Kwentuhan Meet.
+</h1>
+
+<p>
+Inspired by the warmth of Filipino hospitality and the laid-back charm of
+Tagaytay cafés, Casa Kape is a place where good coffee, comforting food,
+and meaningful conversations come together.
+</p>
+
+</div>
+</section>
+
+<section class="section">
+<div class="two-col">
+
+<div>
+<p class="label" style="color:#A97142;">WHO WE ARE</p>
+<h2 class="section-title">A Filipino café inspired by tradition.</h2>
+<p>
+Casa Kape was born from a love for Filipino culture, comforting food,
+and meaningful conversations.
+</p>
+<p>
+From bold Kapeng Barako and rich Sikwate to traditional kakanin and hearty silog
+meals, every item on our menu celebrates local heritage while offering a modern
+café experience.
+</p>
+</div>
+
+<div class="image-box">
+<img src="bibingkaa.png" alt="Bibingka at Casa Kape">
+</div>
+
+</div>
+</section>
+
+<section class="section dark-section">
+<div class="two-col">
+
+<div class="image-box">
+<img src="sikwatee.png" alt="Sikwate at Casa Kape">
+</div>
+
+<div>
+<p class="label">OUR PHILOSOPHY</p>
+<h2 class="section-title">Rooted in Filipino hospitality.</h2>
+<p>
+At Casa Kape, we believe that great food and coffee bring people together.
+Every cup we serve and every meal we prepare is made with care, quality
+ingredients, and genuine appreciation for Filipino traditions.
+</p>
+<p>
+Whether you're sharing breakfast with family, meeting friends for merienda,
+or simply enjoying a quiet moment with coffee, we want every visit to feel like home.
+</p>
+</div>
+
+</div>
+</section>
+
+<section class="section eco">
+
+<p class="label">SUSTAINABILITY</p>
+
+<h2 class="section-title">Brewing a greener future.</h2>
+
+<p>
+Casa Kape is committed to protecting the environment through responsible and
+sustainable practices.
+</p>
+
+<p>
+We minimize the use of single-use plastics and choose eco-friendly alternatives
+whenever possible. Our goal is to reduce waste by using environmentally responsible
+packaging, reusable materials, and sustainable serving practices.
+</p>
+
+<p>
+We also support local products and ingredients whenever available, helping strengthen
+local communities while reducing our environmental footprint.
+</p>
+
+<div class="commitments">
+<div class="commitment"><h3>🌿 Plastic-Free</h3></div>
+<div class="commitment"><h3>Eco Packaging</h3></div>
+<div class="commitment"><h3>Less Waste</h3></div>
+<div class="commitment"><h3>Local Support</h3></div>
+<div class="commitment"><h3>Green Practices</h3></div>
+</div>
+
+</section>
+
+<section class="quote-section">
+
+<p class="label">MORE THAN A CAFÉ</p>
+
+<h2>A place for stories.</h2>
+
+<p>
+Casa Kape is more than a place to eat and drink. It is a place where conversations
+begin, friendships grow, and memories are made.
+</p>
+
+<br>
+
+<p><strong>Kapeng Barako. Kakanin. Kwentuhan.</strong></p>
+
+</section>
+
+<footer>
+<h2>Casa Kape</h2>
+<br>
+<p>Website designed by Abby ☕</p>
+</footer>
+
+</body>
+</html>
