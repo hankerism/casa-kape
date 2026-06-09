@@ -1,1 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | Casa Kape</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#FFF8F2;
+color:#2F1B14;
+}
+
+/* SAME HEADER AS HOMEPAGE */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:25px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,248,242,.95);
+backdrop-filter:blur(12px);
+z-index:999;
+}
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:44px;
+font-weight:700;
+color:#5C3A21;
+}
+
+.logo a{
+text-decoration:none;
+color:#5C3A21;
+}
+
+.menu{
+display:flex;
+gap:35px;
+align-items:center;
+}
+
+.menu a{
+text-decoration:none;
+color:#2F1B14;
+font-weight:600;
+transition:.3s;
+}
+
+.menu a:hover{
+color:#A97142;
+}
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-content{
+position:absolute;
+top:40px;
+right:-250px;
+width:750px;
+background:white;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+padding:35px;
+border-top:4px solid #A97142;
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+opacity:0;
+visibility:hidden;
+transition:.3s;
+}
+
+.dropdown:hover .dropdown-content{
+opacity:1;
+visibility:visible;
+}
+
+.dropdown-content h4 a{
+font-family:'Cormorant Garamond',serif;
+font-size:28px;
+margin-bottom:15px;
+color:#5C3A21;
+display:inline-block;
+}
+
+.dropdown-content p{
+font-size:14px;
+margin-bottom:10px;
+}
+
+/* MENU PAGE HERO */
+
+.menu-hero{
+min-height:58vh;
+padding:160px 8% 90px;
+background:
+linear-gradient(rgba(47,27,20,.62),rgba(47,27,20,.72)),
+url('bibingkaa.png');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+color:white;
+}
+
+.menu-hero-content{
+max-width:760px;
+}
+
+.menu-hero-label{
+font-size:13px;
+letter-spacing:4px;
+text-transform:uppercase;
+margin-bottom:18px;
+color:#E5C7A8;
+}
+
+.menu-hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:96px;
+line-height:.9;
+margin-bottom:22px;
+}
+
+.menu-hero p{
+font-size:20px;
+line-height:1.8;
+max-width:680px;
+}
+
+/* CATEGORY NAV */
+
+.category-nav{
+position:sticky;
+top:96px;
+z-index:800;
+background:#FFF8F2;
+padding:20px 8%;
+display:flex;
+justify-content:center;
+gap:18px;
+flex-wrap:wrap;
+border-bottom:1px solid rgba(47,27,20,.12);
+}
+
+.category-nav a{
+text-decoration:none;
+color:#5C3A21;
+border:1px solid #A97142;
+padding:10px 22px;
+border-radius:30px;
+font-size:14px;
+font-weight:600;
+transition:.3s;
+}
+
+.category-nav a:hover{
+background:#A97142;
+color:white;
+}
+
+/* MENU SECTIONS */
+
+.menu-section{
+padding:110px 8%;
+}
+
+.menu-section.dark{
+background:#2F1B14;
+color:white;
+}
+
+.menu-section.dark .menu-title,
+.menu-section.dark .menu-subtitle{
+color:white;
+}
+
+.menu-header{
+text-align:center;
+margin-bottom:50px;
+}
+
+.menu-subtitle{
+font-size:13px;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#A97142;
+margin-bottom:12px;
+}
+
+.menu-title{
+font-family:'Cormorant Garamond',serif;
+font-size:68px;
+color:#5C3A21;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:28px;
+}
+
+.menu-card{
+background:white;
+color:#2F1B14;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 12px 35px rgba(0,0,0,.09);
+transition:.35s;
+}
+
+.menu-section.dark .menu-card{
+background:#FFF8F2;
+}
+
+.menu-card:hover{
+transform:translateY(-10px);
+}
+
+.menu-img{
+height:250px;
+overflow:hidden;
+}
+
+.menu-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.6s;
+}
+
+.menu-card:hover .menu-img img{
+transform:scale(1.08);
+}
+
+.menu-info{
+padding:24px;
+}
+
+.menu-top{
+display:flex;
+justify-content:space-between;
+gap:15px;
+align-items:flex-start;
+margin-bottom:12px;
+}
+
+.menu-top h3{
+font-family:'Cormorant Garamond',serif;
+font-size:30px;
+color:#5C3A21;
+line-height:1;
+}
+
+.price{
+font-weight:700;
+color:#A97142;
+white-space:nowrap;
+}
+
+.menu-info p{
+font-size:14px;
+line-height:1.7;
+opacity:.85;
+}
+
+/* SAME FOOTER AS HOMEPAGE */
+
+footer{
+background:#2F1B14;
+color:white;
+padding:50px;
+text-align:center;
+}
+
+footer p{
+opacity:.8;
+}
+
+@media(max-width:1100px){
+.menu-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.dropdown-content{
+right:-180px;
+width:650px;
+}
+}
+
+@media(max-width:900px){
+nav{
+position:relative;
+flex-direction:column;
+gap:18px;
+}
+
+.menu{
+flex-wrap:wrap;
+justify-content:center;
+gap:18px;
+}
+
+.dropdown-content{
+display:none;
+}
+
+.category-nav{
+top:0;
+}
+
+.menu-hero{
+padding:90px 8%;
+}
+
+.menu-hero h1{
+font-size:68px;
+}
+
+.menu-grid{
+grid-template-columns:1fr;
+}
+
+.menu-title{
+font-size:50px;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<div class="logo"><a href="index.html">CASA KAPE</a></div>
+
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="our-story.html">Our Story</a>
+
+<div class="dropdown">
+<a href="menu.html">Menu ▾</a>
+
+<div class="dropdown-content">
+<div>
+<h4><a href="menu.html#kape">Kape</a></h4>
+<p>Kapeng Barako</p>
+<p>Spanish Latte</p>
+<p>Ube Latte</p>
+<p>Sikwate</p>
+</div>
+
+<div>
+<h4><a href="menu.html#silog">Silog</a></h4>
+<p>Tapsilog</p>
+<p>Longsilog</p>
+<p>Tocilog</p>
+<p>Bangsilog</p>
+</div>
+
+<div>
+<h4><a href="menu.html#kakanin">Kakanin</a></h4>
+<p>Bibingka</p>
+<p>Kutsinta</p>
+<p>Sapin-Sapin</p>
+<p>Pichi-Pichi</p>
+</div>
+
+<div>
+<h4><a href="menu.html#desserts">Desserts</a></h4>
+<p>Halo-Halo</p>
+<p>Leche Flan</p>
+<p>Mango Float</p>
+<p>Ube Cheesecake</p>
+</div>
+</div>
+</div>
+
+<a href="gallery.html">Gallery</a>
+<a href="visit.html">Visit</a>
+</div>
+</nav>
+
+<section class="menu-hero">
+<div class="menu-hero-content">
+<p class="menu-hero-label">CASA KAPE MENU</p>
+<h1>Filipino comfort food, crafted café style.</h1>
+<p>
+From bold barako coffee and traditional sikwate to all-day silog,
+kakanin, and sweet Filipino desserts.
+</p>
+</div>
+</section>
+
+<div class="category-nav">
+<a href="#kape">☕ Kape</a>
+<a href="#silog">🍳 Silog</a>
+<a href="#kakanin">🍡 Kakanin</a>
+<a href="#desserts">🍨 Desserts</a>
+</div>
+
+<section class="menu-section" id="kape">
+<div class="menu-header">
+<p class="menu-subtitle">Warm Sips</p>
+<h2 class="menu-title">Kape</h2>
+</div>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<div class="menu-img"><img src="barako.png" alt="Kapeng Barako"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Kapeng Barako</h3><span class="price">₱120</span></div>
+<p>Strong Batangas coffee with a bold, earthy flavor and comforting aroma.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="spanishlatte.png" alt="Spanish Latte"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Spanish Latte</h3><span class="price">₱160</span></div>
+<p>Creamy espresso with sweet milk, smooth and lightly indulgent.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="ubelatte.png" alt="Ube Latte"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Ube Latte</h3><span class="price">₱175</span></div>
+<p>A creamy latte with local ube flavor, soft sweetness, and a cozy purple finish.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="sikwatee.png" alt="Sikwate"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Sikwate</h3><span class="price">₱150</span></div>
+<p>Traditional tablea hot chocolate, rich, warm, and deeply chocolatey.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="menu-section dark" id="silog">
+<div class="menu-header">
+<p class="menu-subtitle">All-Day Breakfast</p>
+<h2 class="menu-title">Silog</h2>
+</div>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<div class="menu-img"><img src="tapsilog.png" alt="Tapsilog"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Tapsilog</h3><span class="price">₱220</span></div>
+<p>Tender beef tapa served with garlic rice, sunny-side-up egg, and dipping sauce.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="longsilog.png" alt="Vigan Longsilog"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Vigan Longsilog</h3><span class="price">₱210</span></div>
+<p>Garlicky Vigan longganisa served with garlic rice, egg, and spiced vinegar.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="tocilog.png" alt="Tocilog"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Tocilog</h3><span class="price">₱210</span></div>
+<p>Sweet glazed tocino paired with garlic rice, egg, and a classic Filipino breakfast feel.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="bangsilog.png" alt="Bangsilog"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Bangsilog</h3><span class="price">₱230</span></div>
+<p>Crispy fried bangus served with garlic rice, egg, and a light pickled side.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="menu-section" id="kakanin">
+<div class="menu-header">
+<p class="menu-subtitle">Merienda Favorites</p>
+<h2 class="menu-title">Kakanin</h2>
+</div>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<div class="menu-img"><img src="bibingkaa.png" alt="Bibingka"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Bibingka</h3><span class="price">₱130</span></div>
+<p>Soft baked rice cake with salted egg, cheese, coconut, and a golden toasted top.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="kutsinta.png" alt="Kutsinta"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Kutsinta</h3><span class="price">₱95</span></div>
+<p>Chewy steamed rice cakes topped with freshly grated coconut.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="sapinsapin.png" alt="Sapin-Sapin"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Sapin-Sapin</h3><span class="price">₱110</span></div>
+<p>Colorful layered rice cake with coconut, ube, and sweet native flavors.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="pichipichi.png" alt="Pichi-Pichi"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Pichi-Pichi</h3><span class="price">₱100</span></div>
+<p>Soft cassava bites topped with grated coconut for a simple merienda treat.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section class="menu-section dark" id="desserts">
+<div class="menu-header">
+<p class="menu-subtitle">Sweet Endings</p>
+<h2 class="menu-title">Desserts</h2>
+</div>
+
+<div class="menu-grid">
+
+<div class="menu-card">
+<div class="menu-img"><img src="halohalo.png" alt="Halo-Halo"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Halo-Halo</h3><span class="price">₱180</span></div>
+<p>Classic shaved ice dessert with ube, leche flan, sweet beans, jellies, and milk.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="lecheflan.png" alt="Leche Flan"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Leche Flan</h3><span class="price">₱120</span></div>
+<p>Smooth caramel custard with a rich, creamy texture and golden syrup.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="mangofloat.png" alt="Mango Float"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Mango Float</h3><span class="price">₱145</span></div>
+<p>Layered mango, cream, and crushed biscuits served chilled.</p>
+</div>
+</div>
+
+<div class="menu-card">
+<div class="menu-img"><img src="ubecheesecake.png" alt="Ube Cheesecake"></div>
+<div class="menu-info">
+<div class="menu-top"><h3>Ube Cheesecake</h3><span class="price">₱190</span></div>
+<p>Creamy cheesecake with rich ube flavor and a buttery biscuit crust.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer>
+<h2>Casa Kape</h2>
+<br>
+<p>Website designed by Abby ☕</p>
+</footer>
+
+</body>
+</html>
