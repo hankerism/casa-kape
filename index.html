@@ -1,41 +1,484 @@
-<div class="menu">
-    <a href="#">Home</a>
-    <a href="#">Our Story</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-    <div class="dropdown">
-        <a href="#">Menu ▾</a>
-        <div class="dropdown-content">
-            <div>
-                <h4>Kape</h4>
-                <p>Kapeng Barako</p>
-                <p>Spanish Latte</p>
-                <p>Ube Latte</p>
-                <p>Sikwate</p>
-            </div>
-            <div>
-                <h4>Silog</h4>
-                <p>Tapsilog</p>
-                <p>Longsilog</p>
-                <p>Tocilog</p>
-                <p>Bangsilog</p>
-            </div>
-            <div>
-                <h4>Kakanin</h4>
-                <p>Bibingka</p>
-                <p>Kutsinta</p>
-                <p>Sapin-Sapin</p>
-                <p>Pichi-Pichi</p>
-            </div>
-            <div>
-                <h4>Desserts</h4>
-                <p>Halo-Halo</p>
-                <p>Leche Flan</p>
-                <p>Mango Float</p>
-                <p>Ube Cheesecake</p>
-            </div>
-        </div>
-    </div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <a href="#">Gallery</a>
-    <a href="#">Visit</a>
+<title>Casa Kape</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#FFF8F2;
+color:#2F1B14;
+}
+
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:25px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,248,242,.95);
+backdrop-filter:blur(12px);
+z-index:999;
+}
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:44px;
+font-weight:700;
+color:#5C3A21;
+}
+
+.menu{
+display:flex;
+gap:35px;
+align-items:center;
+}
+
+.menu a{
+text-decoration:none;
+color:#2F1B14;
+font-weight:600;
+transition:.3s;
+}
+
+.menu a:hover{
+color:#A97142;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-content{
+position:absolute;
+top:40px;
+right:-250px;
+
+width:750px;
+background:white;
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+
+gap:30px;
+
+padding:35px;
+
+border-top:4px solid #A97142;
+
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+
+opacity:0;
+visibility:hidden;
+
+transition:.3s;
+}
+
+.dropdown:hover .dropdown-content{
+opacity:1;
+visibility:visible;
+}
+
+.dropdown-content h4{
+font-family:'Cormorant Garamond',serif;
+font-size:28px;
+margin-bottom:15px;
+color:#5C3A21;
+}
+
+.dropdown-content p{
+font-size:14px;
+margin-bottom:10px;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+
+background:
+linear-gradient(rgba(47,27,20,.55),rgba(47,27,20,.65)),
+url('bibingka.png');
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+
+padding:0 8%;
+}
+
+.hero-content{
+max-width:700px;
+color:white;
+}
+
+.hero-label{
+font-size:13px;
+letter-spacing:4px;
+text-transform:uppercase;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:110px;
+line-height:.9;
+margin-bottom:25px;
+}
+
+.hero p{
+font-size:22px;
+line-height:1.7;
+max-width:650px;
+}
+
+.btn{
+display:inline-block;
+
+margin-top:35px;
+
+padding:16px 35px;
+
+background:#A97142;
+color:white;
+
+text-decoration:none;
+
+transition:.3s;
+}
+
+.btn:hover{
+background:#8C6037;
+transform:translateY(-3px);
+}
+
+/* SECTIONS */
+
+.section{
+padding:120px 8%;
+}
+
+.section-title{
+font-family:'Cormorant Garamond',serif;
+font-size:60px;
+margin-bottom:20px;
+color:#5C3A21;
+}
+
+.section p{
+line-height:1.9;
+font-size:18px;
+}
+
+/* FEATURE */
+
+.feature{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+}
+
+.feature img{
+width:100%;
+border-radius:12px;
+transition:.4s;
+}
+
+.feature img:hover{
+transform:scale(1.03);
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:35px;
+border-top:5px solid #A97142;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+margin-bottom:15px;
+font-size:24px;
+font-family:'Cormorant Garamond',serif;
+}
+
+/* BANNER */
+
+.banner{
+height:550px;
+
+background:
+linear-gradient(rgba(47,27,20,.45),rgba(47,27,20,.55)),
+url('alfresco.png');
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+padding:40px;
+}
+
+.banner h2{
+color:white;
+font-family:'Cormorant Garamond',serif;
+font-size:70px;
+max-width:1000px;
+}
+
+/* FOOTER */
+
+footer{
+background:#2F1B14;
+color:white;
+padding:50px;
+text-align:center;
+}
+
+footer p{
+opacity:.8;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:70px;
+}
+
+.feature{
+grid-template-columns:1fr;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.dropdown-content{
+display:none;
+}
+
+.banner h2{
+font-size:45px;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<nav>
+
+<div class="logo">
+CASA KAPE
 </div>
+
+<div class="menu">
+
+<a href="#">Home</a>
+
+<a href="#">Our Story</a>
+
+<div class="dropdown">
+
+<a href="#">Menu ▾</a>
+
+<div class="dropdown-content">
+
+<div>
+<h4>Kape</h4>
+<p>Kapeng Barako</p>
+<p>Spanish Latte</p>
+<p>Ube Latte</p>
+<p>Sikwate</p>
+</div>
+
+<div>
+<h4>Silog</h4>
+<p>Tapsilog</p>
+<p>Longsilog</p>
+<p>Tocilog</p>
+<p>Bangsilog</p>
+</div>
+
+<div>
+<h4>Kakanin</h4>
+<p>Bibingka</p>
+<p>Kutsinta</p>
+<p>Sapin-Sapin</p>
+<p>Pichi-Pichi</p>
+</div>
+
+<div>
+<h4>Desserts</h4>
+<p>Halo-Halo</p>
+<p>Leche Flan</p>
+<p>Mango Float</p>
+<p>Ube Cheesecake</p>
+</div>
+
+</div>
+
+</div>
+
+<a href="#">Gallery</a>
+<a href="#">Visit</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<p class="hero-label">
+FILIPINO CAFÉ & MERIENDA HOUSE
+</p>
+
+<h1>
+Kapeng Barako.<br>
+Kakanin.<br>
+Kwentuhan.
+</h1>
+
+<p>
+A cozy Filipino-inspired café serving silog meals,
+sikwate, kakanin, and local comfort food with a warm heritage feel.
+</p>
+
+<a href="#" class="btn">
+Explore Menu
+</a>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+A modern Filipino café inspired by tradition.
+</h2>
+
+<p>
+Casa Kape celebrates the warmth of Filipino homes, comforting breakfasts,
+and nostalgic merienda favorites. Every cup and every plate tells a story.
+</p>
+
+</section>
+
+<section class="section">
+
+<div class="feature">
+
+<div>
+
+<h2 class="section-title">
+Sikwate & Bibingka
+</h2>
+
+<p>
+Rich tablea hot chocolate paired with freshly baked bibingka —
+the perfect Filipino merienda experience.
+</p>
+
+</div>
+
+<img src="sikwate.jpg">
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+What We Serve
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>☕ Kape</h3>
+<p>Kapeng Barako, Spanish Latte, Ube Latte.</p>
+</div>
+
+<div class="card">
+<h3>🍳 Silog</h3>
+<p>Tapsilog, Longsilog, Tocilog, Bangsilog.</p>
+</div>
+
+<div class="card">
+<h3>🍡 Kakanin</h3>
+<p>Bibingka, Kutsinta, Sapin-Sapin.</p>
+</div>
+
+<div class="card">
+<h3>🍨 Desserts</h3>
+<p>Halo-Halo, Leche Flan, Mango Float.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="banner">
+
+<h2>
+A Tagaytay-inspired space for warm coffee, Filipino comfort food, and meaningful kwentuhan.
+</h2>
+
+</section>
+
+<footer>
+<h2>Casa Kape</h2>
+<br>
+<p>Website designed by Abby ☕</p>
+</footer>
+
+</body>
+</html>
