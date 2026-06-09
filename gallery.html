@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | Casa Kape</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#FFF8F2;
+color:#2F1B14;
+}
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+padding:25px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,248,242,.95);
+backdrop-filter:blur(12px);
+z-index:999;
+}
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:44px;
+font-weight:700;
+color:#5C3A21;
+}
+
+.logo a{
+text-decoration:none;
+color:#5C3A21;
+}
+
+.menu{
+display:flex;
+gap:35px;
+align-items:center;
+}
+
+.menu a{
+text-decoration:none;
+color:#2F1B14;
+font-weight:600;
+transition:.3s;
+}
+
+.menu a:hover{
+color:#A97142;
+}
+
+.dropdown{
+position:relative;
+}
+
+.dropdown-content{
+position:absolute;
+top:40px;
+right:-250px;
+width:750px;
+background:white;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+padding:35px;
+border-top:4px solid #A97142;
+box-shadow:0 20px 50px rgba(0,0,0,.15);
+opacity:0;
+visibility:hidden;
+transition:.3s;
+}
+
+.dropdown:hover .dropdown-content{
+opacity:1;
+visibility:visible;
+}
+
+.dropdown-content h4 a{
+font-family:'Cormorant Garamond',serif;
+font-size:28px;
+margin-bottom:15px;
+color:#5C3A21;
+display:inline-block;
+}
+
+.dropdown-content p{
+font-size:14px;
+margin-bottom:10px;
+}
+
+.gallery-hero{
+height:85vh;
+background:
+linear-gradient(rgba(47,27,20,.45),rgba(47,27,20,.68)),
+url('goldenhour.png');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding:0 8%;
+color:white;
+}
+
+.gallery-hero-content{
+max-width:760px;
+}
+
+.label{
+font-size:13px;
+letter-spacing:4px;
+text-transform:uppercase;
+color:#E5C7A8;
+margin-bottom:18px;
+}
+
+.gallery-hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:95px;
+line-height:.9;
+margin-bottom:25px;
+text-shadow:0 5px 20px rgba(0,0,0,.25);
+}
+
+.gallery-hero p{
+font-size:20px;
+line-height:1.8;
+max-width:650px;
+text-shadow:0 3px 15px rgba(0,0,0,.25);
+}
+
+.gallery-intro{
+padding:100px 8% 50px;
+text-align:center;
+}
+
+.gallery-intro h2{
+font-family:'Cormorant Garamond',serif;
+font-size:62px;
+color:#5C3A21;
+margin-bottom:18px;
+}
+
+.gallery-intro p{
+font-size:18px;
+line-height:1.8;
+max-width:780px;
+margin:auto;
+}
+
+.gallery-grid{
+padding:50px 8% 120px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.gallery-item{
+position:relative;
+overflow:hidden;
+border-radius:16px;
+box-shadow:0 15px 35px rgba(0,0,0,.1);
+background:#2F1B14;
+}
+
+.gallery-item.large{
+grid-column:span 2;
+}
+
+.gallery-item img{
+width:100%;
+height:420px;
+object-fit:cover;
+display:block;
+transition:.6s;
+}
+
+.gallery-item.large img{
+height:550px;
+}
+
+.gallery-item:hover img{
+transform:scale(1.08);
+opacity:.78;
+}
+
+.gallery-caption{
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+padding:28px;
+color:white;
+background:linear-gradient(transparent,rgba(47,27,20,.9));
+transform:translateY(20px);
+opacity:0;
+transition:.35s;
+}
+
+.gallery-item:hover .gallery-caption{
+transform:translateY(0);
+opacity:1;
+}
+
+.gallery-caption h3{
+font-family:'Cormorant Garamond',serif;
+font-size:32px;
+margin-bottom:8px;
+}
+
+.gallery-caption p{
+font-size:14px;
+line-height:1.6;
+}
+
+.gallery-quote{
+background:#2F1B14;
+color:white;
+padding:120px 12%;
+text-align:center;
+}
+
+.gallery-quote h2{
+font-family:'Cormorant Garamond',serif;
+font-size:70px;
+margin-bottom:22px;
+}
+
+.gallery-quote p{
+font-size:20px;
+line-height:1.8;
+max-width:850px;
+margin:auto;
+opacity:.9;
+}
+
+footer{
+background:#2F1B14;
+color:white;
+padding:50px;
+text-align:center;
+}
+
+footer p{
+opacity:.8;
+}
+
+@media(max-width:900px){
+nav{
+position:relative;
+flex-direction:column;
+gap:18px;
+}
+
+.menu{
+flex-wrap:wrap;
+justify-content:center;
+gap:18px;
+}
+
+.dropdown-content{
+display:none;
+}
+
+.gallery-hero{
+height:auto;
+padding:90px 8%;
+}
+
+.gallery-hero h1{
+font-size:62px;
+}
+
+.gallery-grid{
+grid-template-columns:1fr;
+}
+
+.gallery-item.large{
+grid-column:span 1;
+}
+
+.gallery-item img,
+.gallery-item.large img{
+height:360px;
+}
+
+.gallery-intro h2,
+.gallery-quote h2{
+font-size:46px;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<div class="logo"><a href="index.html">CASA KAPE</a></div>
+
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="our-story.html">Our Story</a>
+
+<div class="dropdown">
+<a href="menu.html">Menu ▾</a>
+
+<div class="dropdown-content">
+<div>
+<h4><a href="menu.html#kape">Kape</a></h4>
+<p>Kapeng Barako</p>
+<p>Spanish Latte</p>
+<p>Ube Latte</p>
+<p>Sikwate</p>
+</div>
+
+<div>
+<h4><a href="menu.html#silog">Silog</a></h4>
+<p>Tapsilog</p>
+<p>Longsilog</p>
+<p>Tocilog</p>
+<p>Bangsilog</p>
+</div>
+
+<div>
+<h4><a href="menu.html#kakanin">Kakanin</a></h4>
+<p>Bibingka</p>
+<p>Kutsinta</p>
+<p>Sapin-Sapin</p>
+<p>Pichi-Pichi</p>
+</div>
+
+<div>
+<h4><a href="menu.html#desserts">Desserts</a></h4>
+<p>Halo-Halo</p>
+<p>Leche Flan</p>
+<p>Mango Float</p>
+<p>Ube Cheesecake</p>
+</div>
+</div>
+</div>
+
+<a href="gallery.html">Gallery</a>
+<a href="visit.html">Visit</a>
+</div>
+</nav>
+
+<section class="gallery-hero">
+<div class="gallery-hero-content">
+<p class="label">GALLERY</p>
+
+<h1>
+Moments at<br>
+Casa Kape.
+</h1>
+
+<p>
+From cozy mornings and warm coffee to meaningful conversations,
+explore the atmosphere that makes Casa Kape feel like home.
+</p>
+</div>
+</section>
+
+<section class="gallery-intro">
+<p class="label" style="color:#A97142;">INSIDE CASA KAPE</p>
+<h2>Warm spaces, familiar flavors, and stories worth sharing.</h2>
+<p>
+Every corner of Casa Kape is designed for comfort, connection, and everyday
+moments worth remembering.
+</p>
+</section>
+
+<section class="gallery-grid">
+
+<div class="gallery-item large">
+<img src="outdoor.png" alt="Outdoor café seating">
+<div class="gallery-caption">
+<h3>Alfresco Seating</h3>
+<p>A Tagaytay-inspired outdoor space surrounded by greenery and warm sunlight.</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="indoor.png" alt="Indoor café corner">
+<div class="gallery-caption">
+<h3>Indoor Café</h3>
+<p>A cozy corner filled with wooden textures, plants, and soft café lighting.</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="windowseat.png" alt="Window seat at Casa Kape">
+<div class="gallery-caption">
+<h3>Window Seat</h3>
+<p>A peaceful spot for slow mornings, coffee, and scenic views.</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="friends.png" alt="Friends sharing coffee">
+<div class="gallery-caption">
+<h3>Friends & Coffee</h3>
+<p>Good coffee, good food, and good company in one warm space.</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="sharing.png" alt="Friends sharing merienda">
+<div class="gallery-caption">
+<h3>Kwentuhan Moments</h3>
+<p>Filipino merienda favorites made for sharing and storytelling.</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="laptop.png" alt="Solo coffee and laptop">
+<div class="gallery-caption">
+<h3>Slow Work Days</h3>
+<p>A quiet café corner for focus, creativity, and comfort.</p>
+</div>
+</div>
+
+<div class="gallery-item large">
+<img src="goldenhour.png" alt="Golden hour at Casa Kape">
+<div class="gallery-caption">
+<h3>Golden Hour</h3>
+<p>Warm sunsets, string lights, and meaningful conversations.</p>
+</div>
+</div>
+
+<div class="gallery-item">
+<img src="entrance.png" alt="Casa Kape entrance">
+<div class="gallery-caption">
+<h3>Instagrammable Entrance</h3>
+<p>A welcoming aisle filled with plants, lights, and Casa Kape charm.</p>
+</div>
+</div>
+
+</section>
+
+<section class="gallery-quote">
+<h2>Kapeng Barako. Kakanin. Kwentuhan.</h2>
+<p>
+Casa Kape is more than a café. It is a place for stories, laughter,
+quiet mornings, and warm memories.
+</p>
+</section>
+
+<footer>
+<h2>Casa Kape</h2>
+<br>
+<p>Website designed by Abby ☕</p>
+</footer>
+
+</body>
+</html>
