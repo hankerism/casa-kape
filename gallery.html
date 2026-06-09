@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery | Casa Kape</title>
@@ -9,12 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
 
 body{
 font-family:'Montserrat',sans-serif;
@@ -39,19 +33,11 @@ z-index:999;
 font-family:'Cormorant Garamond',serif;
 font-size:44px;
 font-weight:700;
-color:#5C3A21;
 }
 
-.logo a{
-text-decoration:none;
-color:#5C3A21;
-}
+.logo a{text-decoration:none;color:#5C3A21}
 
-.menu{
-display:flex;
-gap:35px;
-align-items:center;
-}
+.menu{display:flex;gap:35px;align-items:center}
 
 .menu a{
 text-decoration:none;
@@ -60,13 +46,9 @@ font-weight:600;
 transition:.3s;
 }
 
-.menu a:hover{
-color:#A97142;
-}
+.menu a:hover{color:#A97142}
 
-.dropdown{
-position:relative;
-}
+.dropdown{position:relative}
 
 .dropdown-content{
 position:absolute;
@@ -103,21 +85,23 @@ font-size:14px;
 margin-bottom:10px;
 }
 
-.gallery-hero{
-height:85vh;
-background:
-linear-gradient(rgba(47,27,20,.45),rgba(47,27,20,.68)),
-url('goldenhour.png');
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-padding:0 8%;
-color:white;
+.gallery-page{
+padding-top:95px;
 }
 
-.gallery-hero-content{
-max-width:760px;
+.gallery-hero{
+min-height:88vh;
+display:grid;
+grid-template-columns:42% 58%;
+background:#2F1B14;
+}
+
+.gallery-text{
+padding:90px 12%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+color:white;
 }
 
 .label{
@@ -128,116 +112,138 @@ color:#E5C7A8;
 margin-bottom:18px;
 }
 
-.gallery-hero h1{
+.gallery-text h1{
 font-family:'Cormorant Garamond',serif;
-font-size:95px;
+font-size:88px;
 line-height:.9;
 margin-bottom:25px;
-text-shadow:0 5px 20px rgba(0,0,0,.25);
 }
 
-.gallery-hero p{
-font-size:20px;
-line-height:1.8;
-max-width:650px;
-text-shadow:0 3px 15px rgba(0,0,0,.25);
-}
-
-.gallery-intro{
-padding:100px 8% 40px;
-text-align:center;
-}
-
-.gallery-intro h2{
-font-family:'Cormorant Garamond',serif;
-font-size:62px;
-color:#5C3A21;
-margin-bottom:18px;
-}
-
-.gallery-intro p{
+.gallery-text p{
 font-size:18px;
 line-height:1.8;
-max-width:780px;
-margin:auto;
+max-width:520px;
 }
 
-.gallery-grid{
-padding:50px 8% 120px;
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:30px;
-}
-
-.gallery-item{
+.slideshow{
 position:relative;
 overflow:hidden;
-border-radius:16px;
-box-shadow:0 15px 35px rgba(0,0,0,.12);
-background:#2F1B14;
+min-height:88vh;
 }
 
-.gallery-item img{
+.slide{
+position:absolute;
+inset:0;
+opacity:0;
+transform:translateX(70px) scale(.98);
+transition:opacity .9s ease, transform .9s ease;
+}
+
+.slide.active{
+opacity:1;
+transform:translateX(0) scale(1);
+z-index:2;
+}
+
+.slide img{
 width:100%;
-height:430px;
+height:100%;
 object-fit:cover;
 display:block;
-transition:.6s;
 }
 
-.gallery-item:hover img{
-transform:scale(1.08);
-opacity:.78;
-}
-
-.gallery-caption{
+.slide-caption{
 position:absolute;
-left:0;
-right:0;
-bottom:0;
-padding:30px;
+left:45px;
+bottom:45px;
+max-width:440px;
+padding:26px 30px;
+background:rgba(47,27,20,.72);
 color:white;
-background:linear-gradient(transparent,rgba(47,27,20,.92));
-transform:translateY(20px);
-opacity:0;
-transition:.35s;
+backdrop-filter:blur(8px);
 }
 
-.gallery-item:hover .gallery-caption{
-transform:translateY(0);
-opacity:1;
-}
-
-.gallery-caption h3{
+.slide-caption h3{
 font-family:'Cormorant Garamond',serif;
-font-size:34px;
+font-size:38px;
 margin-bottom:8px;
 }
 
-.gallery-caption p{
+.slide-caption p{
 font-size:14px;
-line-height:1.6;
+line-height:1.7;
+}
+
+.controls{
+position:absolute;
+right:35px;
+bottom:40px;
+display:flex;
+gap:12px;
+z-index:10;
+}
+
+.controls button{
+width:52px;
+height:52px;
+border:none;
+border-radius:50%;
+background:#FFF8F2;
+color:#5C3A21;
+font-size:26px;
+cursor:pointer;
+transition:.3s;
+}
+
+.controls button:hover{
+background:#A97142;
+color:white;
+}
+
+.thumbs{
+padding:80px 8%;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.thumb{
+height:210px;
+border-radius:14px;
+overflow:hidden;
+cursor:pointer;
+box-shadow:0 10px 28px rgba(0,0,0,.1);
+}
+
+.thumb img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.4s;
+}
+
+.thumb:hover img{
+transform:scale(1.08);
 }
 
 .gallery-quote{
 background:#2F1B14;
 color:white;
-padding:120px 12%;
+padding:110px 12%;
 text-align:center;
 }
 
 .gallery-quote h2{
 font-family:'Cormorant Garamond',serif;
-font-size:70px;
-margin-bottom:22px;
+font-size:68px;
+margin-bottom:20px;
 }
 
 .gallery-quote p{
-font-size:20px;
+font-size:18px;
 line-height:1.8;
-max-width:850px;
+max-width:780px;
 margin:auto;
-opacity:.9;
 }
 
 footer{
@@ -247,9 +253,7 @@ padding:50px;
 text-align:center;
 }
 
-footer p{
-opacity:.8;
-}
+footer p{opacity:.8}
 
 @media(max-width:900px){
 nav{
@@ -268,30 +272,42 @@ gap:18px;
 display:none;
 }
 
+.gallery-page{
+padding-top:0;
+}
+
 .gallery-hero{
-height:auto;
-padding:90px 8%;
-}
-
-.gallery-hero h1{
-font-size:62px;
-}
-
-.gallery-grid{
 grid-template-columns:1fr;
 }
 
-.gallery-item img{
-height:360px;
+.gallery-text{
+padding:70px 8%;
 }
 
-.gallery-intro h2,
+.gallery-text h1{
+font-size:58px;
+}
+
+.slideshow{
+height:520px;
+min-height:520px;
+}
+
+.slide-caption{
+left:22px;
+right:22px;
+bottom:25px;
+}
+
+.thumbs{
+grid-template-columns:1fr 1fr;
+}
+
 .gallery-quote h2{
-font-size:46px;
+font-size:44px;
 }
 }
 </style>
-
 </head>
 
 <body>
@@ -346,89 +362,93 @@ font-size:46px;
 </div>
 </nav>
 
+<main class="gallery-page">
+
 <section class="gallery-hero">
-<div class="gallery-hero-content">
+
+<div class="gallery-text">
 <p class="label">GALLERY</p>
-
-<h1>
-Moments at<br>
-Casa Kape.
-</h1>
-
+<h1>Moments at Casa Kape.</h1>
 <p>
-From cozy mornings and warm coffee to meaningful conversations,
-explore the atmosphere that makes Casa Kape feel like home.
+A glimpse of our warm spaces, quiet corners, golden-hour views,
+and meaningful kwentuhan over coffee.
 </p>
 </div>
-</section>
 
-<section class="gallery-intro">
-<p class="label" style="color:#A97142;">INSIDE CASA KAPE</p>
-<h2>Warm spaces, familiar flavors, and stories worth sharing.</h2>
-<p>
-Every corner of Casa Kape is designed for comfort, connection, and everyday
-moments worth remembering.
-</p>
-</section>
+<div class="slideshow">
 
-<section class="gallery-grid">
-
-<div class="gallery-item">
-<img src="outdoor.png" alt="Outdoor café seating">
-<div class="gallery-caption">
+<div class="slide active">
+<img src="outdoor.png" alt="Alfresco Seating">
+<div class="slide-caption">
 <h3>Alfresco Seating</h3>
-<p>A Tagaytay-inspired outdoor space surrounded by greenery and warm sunlight.</p>
+<p>A Tagaytay-inspired outdoor café space surrounded by greenery.</p>
 </div>
 </div>
 
-<div class="gallery-item">
-<img src="indoor.png" alt="Indoor café corner">
-<div class="gallery-caption">
+<div class="slide">
+<img src="indoor.png" alt="Indoor Café">
+<div class="slide-caption">
 <h3>Indoor Café</h3>
-<p>A cozy corner filled with wooden textures, plants, and soft café lighting.</p>
+<p>Warm lights, wooden textures, and cozy Filipino-inspired details.</p>
 </div>
 </div>
 
-<div class="gallery-item">
-<img src="window seat.png" alt="Window seat at Casa Kape">
-<div class="gallery-caption">
+<div class="slide">
+<img src="window seat.png" alt="Window Seat">
+<div class="slide-caption">
 <h3>Window Seat</h3>
-<p>A peaceful spot for slow mornings, coffee, and scenic views.</p>
+<p>A peaceful corner for slow mornings and scenic coffee moments.</p>
 </div>
 </div>
 
-<div class="gallery-item">
-<img src="friends.png" alt="Friends sharing coffee">
-<div class="gallery-caption">
+<div class="slide">
+<img src="friends.png" alt="Friends and Coffee">
+<div class="slide-caption">
 <h3>Friends & Coffee</h3>
 <p>Good coffee, good food, and good company in one warm space.</p>
 </div>
 </div>
 
-<div class="gallery-item">
-<img src="laptop.png" alt="Solo coffee and laptop">
-<div class="gallery-caption">
+<div class="slide">
+<img src="laptop.png" alt="Slow Work Days">
+<div class="slide-caption">
 <h3>Slow Work Days</h3>
-<p>A quiet café corner for focus, creativity, and comfort.</p>
+<p>A quiet spot for focus, creativity, and comfort.</p>
 </div>
 </div>
 
-<div class="gallery-item">
-<img src="goldenhour.png" alt="Golden hour at Casa Kape">
-<div class="gallery-caption">
+<div class="slide">
+<img src="goldenhour.png" alt="Golden Hour">
+<div class="slide-caption">
 <h3>Golden Hour</h3>
 <p>Warm sunsets, string lights, and meaningful conversations.</p>
 </div>
 </div>
 
-<div class="gallery-item">
-<img src="entrance.png" alt="Casa Kape entrance">
-<div class="gallery-caption">
+<div class="slide">
+<img src="entrance.png" alt="Entrance">
+<div class="slide-caption">
 <h3>Instagrammable Entrance</h3>
 <p>A welcoming aisle filled with plants, lights, and Casa Kape charm.</p>
 </div>
 </div>
 
+<div class="controls">
+<button onclick="prevSlide()">‹</button>
+<button onclick="nextSlide()">›</button>
+</div>
+
+</div>
+</section>
+
+<section class="thumbs">
+<div class="thumb" onclick="showSlide(0)"><img src="outdoor.png" alt="Outdoor"></div>
+<div class="thumb" onclick="showSlide(1)"><img src="indoor.png" alt="Indoor"></div>
+<div class="thumb" onclick="showSlide(2)"><img src="window seat.png" alt="Window Seat"></div>
+<div class="thumb" onclick="showSlide(3)"><img src="friends.png" alt="Friends"></div>
+<div class="thumb" onclick="showSlide(4)"><img src="laptop.png" alt="Laptop"></div>
+<div class="thumb" onclick="showSlide(5)"><img src="goldenhour.png" alt="Golden Hour"></div>
+<div class="thumb" onclick="showSlide(6)"><img src="entrance.png" alt="Entrance"></div>
 </section>
 
 <section class="gallery-quote">
@@ -439,11 +459,34 @@ quiet mornings, and warm memories.
 </p>
 </section>
 
+</main>
+
 <footer>
 <h2>Casa Kape</h2>
 <br>
 <p>Website designed by Abby ☕</p>
 </footer>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(index){
+slides[currentSlide].classList.remove("active");
+currentSlide = index;
+slides[currentSlide].classList.add("active");
+}
+
+function nextSlide(){
+showSlide((currentSlide + 1) % slides.length);
+}
+
+function prevSlide(){
+showSlide((currentSlide - 1 + slides.length) % slides.length);
+}
+
+setInterval(nextSlide, 5000);
+</script>
 
 </body>
 </html>
